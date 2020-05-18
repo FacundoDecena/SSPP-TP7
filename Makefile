@@ -12,6 +12,8 @@ ejercicio.2:
 
 ejercicio.3:
 	cat ./ejercicio3/ejercicio3.md
+	# Solo se que anda en linux, perdon si se rompe en otros :D
+	open ./ejercicio3/ejercicio3.pdf
 
 ejercicio.5:
 	${CC} -o ./build/ejercicio5 -fopenmp ./ejercicio5/ejercicio5.c
