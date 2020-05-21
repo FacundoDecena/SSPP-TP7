@@ -1,5 +1,5 @@
 # Build Executable
-SHELL=/bin/bash
+SHELL=/bin/fish
 
 CC = gcc
 
@@ -11,10 +11,11 @@ ejercicio.2:
 	${CC} -o ./build/ejercicio2b -fopenmp ./ejercicio2/ejercicio2b.c
 
 ejercicio.3:
-	cat ./ejercicio3/ejercicio3.md
-	# Solo se que anda en linux, perdon si se rompe en otros :D
+	# Solo se que anda en fish, perdon si se rompe en otros :D
 	open ./ejercicio3/ejercicio3.pdf
 
+	cat ./ejercicio3/ejercicio3.md 
+	
 ejercicio.5:
 	${CC} -o ./build/ejercicio5 -fopenmp ./ejercicio5/ejercicio5.c
 
