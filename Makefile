@@ -22,7 +22,9 @@ ejercicio.7:
 	${CC} -o ./build/ejercicio7b -fopenmp ./ejercicio7/bucle2.c
 
 ejercicio.8:
-	${CC} -o ./build/ejercicio8 -fopenmp ./ejercicio8/ejercicio8.c -lm
+	${CC} -o ./build/ejercicio8Secuencial -fopenmp ./ejercicio8/ejercicio8Secuencial.c -lm
+	${CC} -O1 -o ./build/ejercicio8Paralelo2 -fopenmp ./ejercicio8/ejercicio8Paralelo2.c -lm
+	${CC} -O1 -o ./build/ejercicio8Paralelo -fopenmp ./ejercicio8/ejercicio8Paralelo.c -lm
 
 clean:
 	$(RM) ./build/ejercicio*
@@ -62,4 +64,7 @@ runE7:
 	echo "Puede ver la version en pdf en ./ejercicio7/ejercicio7.pdf"
 
 runE8:
-	./build/ejercicio8
+	./build/ejercicio8Paralelo
+	./build/ejercicio8Paralelo2
+	./build/ejercicio8Secuencial
+	
