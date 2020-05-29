@@ -16,6 +16,12 @@ ejercicio.3:
 
 	cat ./ejercicio3/ejercicio3.md 
 	
+ejercicio.4:
+	# Solo se que anda en fish, perdon si se rompe en otros :D
+	open ./ejercicio4/ejercicio4.pdf
+
+	cat ./ejercicio4/ejercicio4.md 
+
 ejercicio.5:
 	${CC} -o ./build/ejercicio5 -fopenmp ./ejercicio5/ejercicio5.c
 

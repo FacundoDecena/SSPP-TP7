@@ -28,7 +28,7 @@ Suponga los siguientes fragmentos de programa e indique que lazos son susceptibl
         ix = ix + stride
     END DO
     ```
-    - No Paralelizable
+    - No Paralelizable por la variable ix
 -
     ```Pascal
     DO i = 1, N
@@ -36,5 +36,3 @@ Suponga los siguientes fragmentos de programa e indique que lazos son susceptibl
     END DO
     ```
     - Paralelizable
-
-Ninguna tiene justificacion porque no la tienen...
