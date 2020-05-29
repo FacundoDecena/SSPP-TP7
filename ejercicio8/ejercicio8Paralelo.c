@@ -130,6 +130,8 @@ int main(){
     cpu_time_used = (((double) (end - start)) / CLOCKS_PER_SEC) / nthreads;
 
     printf("\nHay que considerar que este es el unico que imprime carteles\n");
-    printf("Para una comparacion mas justa comente los prints\n");
-    printf("Tiempo transcurrido: %lf\n", cpu_time_used);
+    printf("Para una comparacion mas justa comente los prints\n\n");
+
+    printf("Paralelizada la iteracion sobre las llamadas a funciones\n");
+    printf("Tiempo transcurrido: %lf\n\n", cpu_time_used);
 }

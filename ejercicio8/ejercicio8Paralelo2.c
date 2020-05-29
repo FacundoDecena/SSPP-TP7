@@ -118,5 +118,6 @@ int main(){
     }
     cpu_time_used = (((double) (end - start)) / CLOCKS_PER_SEC) / nthreads;
 
+    printf("Paralelizada la iteracion sobre los elementos del arreglo\n");
     printf("Tiempo transcurrido: %lf\n\n", cpu_time_used);
 }
