@@ -1,5 +1,5 @@
 # Build Executable
-SHELL=/bin/fish
+SHELL=/bin/bash
 
 CC = gcc
 
@@ -9,18 +9,6 @@ ejercicio.1:
 ejercicio.2:
 	${CC} -o ./build/ejercicio2a -fopenmp ./ejercicio2/ejercicio2a.c
 	${CC} -o ./build/ejercicio2b -fopenmp ./ejercicio2/ejercicio2b.c
-
-ejercicio.3:
-	# Solo se que anda en fish, perdon si se rompe en otros :D
-	open ./ejercicio3/ejercicio3.pdf
-
-	cat ./ejercicio3/ejercicio3.md 
-	
-ejercicio.4:
-	# Solo se que anda en fish, perdon si se rompe en otros :D
-	open ./ejercicio4/ejercicio4.pdf
-
-	cat ./ejercicio4/ejercicio4.md 
 
 ejercicio.5:
 	${CC} -o ./build/ejercicio5 -fopenmp ./ejercicio5/ejercicio5.c
@@ -44,6 +32,17 @@ runE2:
 
 	./build/ejercicio2b
 
+runE3:
+	ejercicio.3:
+	cat ./ejercicio3/ejercicio3.md 
+	
+	echo "Puede ver la version en pdf en ./ejercicio3/ejercicio3.pdf"
+
+runE4:
+	cat ./ejercicio4/ejercicio4.md 
+
+	echo "Puede ver la version en pdf en ./ejercicio4/ejercicio4.pdf"
+
 runE5:
 	./build/ejercicio5
 
@@ -54,3 +53,7 @@ runE7:
 	./build/ejercicio7a
 
 	./build/ejercicio7b
+
+	cat ./ejercicio7/ejercicio7.md
+
+	echo "Puede ver la version en pdf en ./ejercicio7/ejercicio7.pdf"
