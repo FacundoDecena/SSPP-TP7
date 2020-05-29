@@ -61,7 +61,6 @@ double findDesviacion(int arr[]){
         media += arr[i];
     }
     media /= CAPACITY;
-    printf("Media: %lf\n", media);
 
     // Find varianza
     for (i = 0; i < CAPACITY; i++)
@@ -69,7 +68,6 @@ double findDesviacion(int arr[]){
         varianza += pow((arr[i] - media), 2.0);
     }
     varianza /= (CAPACITY - 1);
-    printf("varianza: %lf\n", varianza);
 
     // Calculates the desviacion estandar
     return sqrt(varianza);
@@ -99,11 +97,19 @@ int main(){
     }
     //arr[465410] = -1;
     //arr[958651] = MAX_VALUE + 1;
+    clock_t start, end;
+    double cpu_time_used;
 
-    printf("Maximo: %d\n", findMax(arr));
-    printf("Minimo: %d\n", findMin(arr));
-    printf("Multiplicando... \n");
-    multiply(arr, 562);
-    printf("Listo! \n");
-    printf("Desviacion estandar: %lf\n", findDesviacion(arr));
+    start = clock();
+    for (i = 0; i < 500; i++)
+    {
+        findMax(arr);
+        findMin(arr);
+        multiply(arr, 562);
+        findDesviacion(arr);
+    }
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+
+    printf("Tiempo transcurrido: %lf\n", cpu_time_used);
 }
