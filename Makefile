@@ -28,6 +28,11 @@ ejercicio.5:
 ejercicio.6:
 	${CC} -o ./build/ejercicio6 -fopenmp ./ejercicio6/ejercicio6.c
 
+ejercicio.7:
+	${CC} -o ./build/ejercicio7a -fopenmp ./ejercicio7/bucle1.c
+
+	${CC} -o ./build/ejercicio7b -fopenmp ./ejercicio7/bucle2.c
+
 clean:
 	$(RM) ./build/ejercicio*
 
@@ -44,3 +49,8 @@ runE5:
 
 runE6:
 	./build/ejercicio6
+
+runE7:
+	./build/ejercicio7a
+
+	./build/ejercicio7b
