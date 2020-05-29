@@ -15,7 +15,6 @@ main()
         tid = omp_get_thread_num();
         A[i] = tid;
         usleep(1);
-        usleep(1);
     }
     for (i = 0; i < N / 2; i++)
         printf(" %2d", i);
