@@ -21,6 +21,9 @@ ejercicio.7:
 
 	${CC} -o ./build/ejercicio7b -fopenmp ./ejercicio7/bucle2.c
 
+ejercicio.8:
+	${CC} -o ./build/ejercicio8 -fopenmp ./ejercicio8/ejercicio8.c -lm
+
 clean:
 	$(RM) ./build/ejercicio*
 
@@ -57,3 +60,6 @@ runE7:
 	cat ./ejercicio7/ejercicio7.md
 
 	echo "Puede ver la version en pdf en ./ejercicio7/ejercicio7.pdf"
+
+runE8:
+	./build/ejercicio8
