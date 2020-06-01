@@ -37,17 +37,18 @@ int findMin(int arr[])
     return min;
 }
 
-// multiply multiplies each element of arr times multiplicador
-void multiply(int arr[], int multiplicador)
+// multiply multiplies each element
+long long multiply(int arr[])
 {
+    long long res = 1;
     int i;
     #pragma omp parallel for
     for (i = 0; i < CAPACITY; i++)
     {
-        arr[i] *= multiplicador;
+        res *= arr[i];
     }
 
-    return;
+    return res;
 }
 
 // findDesviacion calculates the desviacion estandar
@@ -108,7 +109,7 @@ int main(){
     {
         findMax(arr);
         findMin(arr);
-        multiply(arr, 562);
+        multiply(arr);
         findDesviacion(arr);
     }
     end = clock();
