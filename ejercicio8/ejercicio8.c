@@ -92,7 +92,7 @@ int randLim() {
 
 int main(){
     int i = 0;
-    int tid, nthreads;
+    int tid;
     int arr[CAPACITY];
     srandom(time(NULL));
     for (; i < CAPACITY; i++)
@@ -102,6 +102,7 @@ int main(){
 
     clock_t start, end;
     double cpu_time_used, fastest = 9999999999.9;
+    omp_set_num_threads(4);
 
     
     for (i = 0; i < 50; i++)
@@ -127,7 +128,6 @@ int main(){
     #pragma omp parallel private (tid)
     {
         tid = omp_get_thread_num(); 
-        nthreads = omp_get_num_threads();
         #pragma omp sections
         {
             #pragma omp section
@@ -153,7 +153,7 @@ int main(){
         }
     }
     end = clock();
-    cpu_time_used = (((double) (end - start)) / CLOCKS_PER_SEC) / nthreads;
+    cpu_time_used = (((double) (end - start)) / CLOCKS_PER_SEC) / 4;
 
 
     printf("Paralelizada la iteracion sobre las llamadas a funciones\n");
