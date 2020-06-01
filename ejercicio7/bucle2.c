@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include <unistd.h>
 #define N 40
-main()
+int main()
 {
     int tid;
     int A[N];
     int i;
     for (i = 0; i < N; i++)
         A[i] = -1;
-#pragma omp parallel for schedule(dynamic, 4) private(tid)
+    #pragma omp parallel for schedule(dynamic, 4) private(tid)
     for (i = 0; i < N; i++)
     {
         tid = omp_get_thread_num();
