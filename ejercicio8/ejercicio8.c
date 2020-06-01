@@ -49,13 +49,15 @@ long long multiply(int arr[])
 }
 
 // findDesviacion calculates the desviacion estandar
-double findDesviacion(int arr[]){
+double findDesviacion(int arr[])
+{
     int i;
     double media = 0;
     double varianza = 0;
 
     // Find media
-    for(i = 0; i < CAPACITY; i++){
+    for (i = 0; i < CAPACITY; i++)
+    {
         media += arr[i];
     }
     media /= CAPACITY;
@@ -69,23 +71,25 @@ double findDesviacion(int arr[]){
 
     // Calculates the desviacion estandar
     return sqrt(varianza);
-    
 }
 
 // randLim returns a random number between 0 and MAX_VALUE.
-int randLim() {
+int randLim()
+{
 
-    int divisor = RAND_MAX/(MAX_VALUE+1);
+    int divisor = RAND_MAX / (MAX_VALUE + 1);
     int retval;
 
-    do { 
+    do
+    {
         retval = rand() / divisor;
     } while (retval > MAX_VALUE);
 
     return retval;
 }
 
-int main(){
+int main()
+{
     int i = 0;
     int tid;
     int arr[CAPACITY];
@@ -113,17 +117,17 @@ int main(){
         printf("findDesviacion desde el thread %d\n", tid);
         findDesviacion(arr);
         end = omp_get_wtime();
-        
+
         cpu_time_used = (end - start);
         if (cpu_time_used < fastest)
             fastest = cpu_time_used;
     }
-    
+
     printf("\n Paralelo \n");
     startP = omp_get_wtime();
-    #pragma omp parallel private (tid)
+    #pragma omp parallel private(tid)
     {
-        tid = omp_get_thread_num(); 
+        tid = omp_get_thread_num();
         #pragma omp sections
         {
             #pragma omp section
@@ -151,9 +155,8 @@ int main(){
     endP = omp_get_wtime();
     cpu_time_usedP = (endP - startP);
 
-
     printf("Paralelizada la iteracion sobre las llamadas a funciones\n");
     printf("Secuencial mas rapido: %lf\n\n", fastest);
     printf("Paralelo: %lf\n\n", cpu_time_usedP);
-    printf("Speedup: %lf\n\n", (fastest/cpu_time_usedP));
+    printf("Speedup: %lf\n\n", (fastest / cpu_time_usedP));
 }
