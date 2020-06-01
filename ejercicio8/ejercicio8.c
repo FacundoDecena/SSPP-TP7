@@ -37,7 +37,7 @@ int findMin(int arr[])
     return min;
 }
 
-// multiply multiplies each element of arr times multiplicador
+// multiply multiplies each element
 long long multiply(int arr[])
 {
     long long res = 1;
