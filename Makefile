@@ -25,6 +25,7 @@ ejercicio.8:
 	${CC} -o ./build/ejercicio8Secuencial -fopenmp ./ejercicio8/ejercicio8Secuencial.c -lm
 	${CC} -O1 -o ./build/ejercicio8Paralelo2 -fopenmp ./ejercicio8/ejercicio8Paralelo2.c -lm
 	${CC} -O1 -o ./build/ejercicio8Paralelo -fopenmp ./ejercicio8/ejercicio8Paralelo.c -lm
+	${CC} -O0 -o ./build/ejercicio8 -fopenmp ./ejercicio8/ejercicio8.c -lm
 
 clean:
 	$(RM) ./build/ejercicio*
@@ -67,4 +68,5 @@ runE8:
 	./build/ejercicio8Paralelo
 	./build/ejercicio8Paralelo2
 	./build/ejercicio8Secuencial
+	./build/ejercicio8
 	
