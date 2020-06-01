@@ -102,6 +102,8 @@ int main(){
 
     clock_t start, end;
     double cpu_time_used, fastest = 9999999999.9;
+
+    //Como son 4 funciones indico el numero de threads = 4
     omp_set_num_threads(4);
 
     
