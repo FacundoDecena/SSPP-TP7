@@ -107,7 +107,6 @@ int main(){
     for (i = 0; i < 50; i++)
     {
         start = clock();
-        tid = omp_get_thread_num();
         printf("findMax desde el thread %d\n", tid);
         findMax(arr);
         printf("findMin desde el thread %d\n", tid);
@@ -123,27 +122,37 @@ int main(){
             fastest = cpu_time_used;
     }
     
-
+    printf("\n Paralelo \n");
     start = clock();
     #pragma omp parallel private (tid)
     {
-        tid = omp_get_thread_num();
-        printf("findMax desde el thread %d\n", tid);
-        findMax(arr);
-        printf("findMin desde el thread %d\n", tid);
-        findMin(arr);
-        printf("multiply desde el thread %d\n", tid);
-        multiply(arr);
-        printf("findDesviacion desde el thread %d\n", tid);
-        findDesviacion(arr);
+        tid = omp_get_thread_num(); 
+        nthreads = omp_get_num_threads();
+        #pragma omp sections
+        {
+            #pragma omp section
+            {
+                printf("findMax desde el thread %d\n", tid);
+                findMax(arr);
+            }
+            #pragma omp section
+            {
+                printf("findMin desde el thread %d\n", tid);
+                findMin(arr);
+            }
+            #pragma omp section
+            {
+                printf("multiply desde el thread %d\n", tid);
+                multiply(arr);
+            }
+            #pragma omp section
+            {
+                printf("findDesviacion desde el thread %d\n", tid);
+                findDesviacion(arr);
+            }
+        }
     }
     end = clock();
-
-    #pragma omp parallel
-    {
-        nthreads = omp_get_num_threads();
-    }
-
     cpu_time_used = (((double) (end - start)) / CLOCKS_PER_SEC) / nthreads;
 
 
