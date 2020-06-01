@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define CAPACITY 1000000
+#define CAPACITY 2000000
 #define MAX_VALUE 5000000
 
 // findMax searchs for the max value in the array arr
@@ -12,7 +12,6 @@ int findMax(int arr[])
 {
     int i, tid;
     int max = arr[0];
-    #pragma omp parallel for
     for (i = 1; i < CAPACITY; i++)
     {
         if (arr[i] > max)
@@ -27,7 +26,6 @@ int findMin(int arr[])
 {
     int i;
     int min = arr[0];
-    #pragma omp parallel for
     for (i = 1; i < CAPACITY; i++)
     {
         if (arr[i] < min)
@@ -42,7 +40,6 @@ long long multiply(int arr[])
 {
     long long res = 1;
     int i;
-    #pragma omp parallel for
     for (i = 0; i < CAPACITY; i++)
     {
         res *= arr[i];
@@ -58,14 +55,12 @@ double findDesviacion(int arr[]){
     double varianza = 0;
 
     // Find media
-    #pragma omp parallel for
     for(i = 0; i < CAPACITY; i++){
         media += arr[i];
     }
     media /= CAPACITY;
 
     // Find varianza
-    #pragma omp parallel for
     for (i = 0; i < CAPACITY; i++)
     {
         varianza += pow((arr[i] - media), 2.0);
@@ -100,16 +95,15 @@ int main(){
         arr[i] = randLim();
     }
 
-    clock_t start, end;
+    double start, end;
+    double startP, endP;
     double cpu_time_used, fastest = 9999999999.9;
+    double cpu_time_usedP;
 
-    //Como son 4 funciones indico el numero de threads = 4
-    omp_set_num_threads(4);
-
-    
+    printf("Secuencial \n");
     for (i = 0; i < 50; i++)
     {
-        start = clock();
+        start = omp_get_wtime();
         printf("findMax desde el thread %d\n", tid);
         findMax(arr);
         printf("findMin desde el thread %d\n", tid);
@@ -118,15 +112,15 @@ int main(){
         multiply(arr);
         printf("findDesviacion desde el thread %d\n", tid);
         findDesviacion(arr);
-        end = clock();
+        end = omp_get_wtime();
         
-        cpu_time_used = (((double) (end - start)) / CLOCKS_PER_SEC);
+        cpu_time_used = (end - start);
         if (cpu_time_used < fastest)
             fastest = cpu_time_used;
     }
     
     printf("\n Paralelo \n");
-    start = clock();
+    startP = omp_get_wtime();
     #pragma omp parallel private (tid)
     {
         tid = omp_get_thread_num(); 
@@ -154,12 +148,12 @@ int main(){
             }
         }
     }
-    end = clock();
-    cpu_time_used = (((double) (end - start)) / CLOCKS_PER_SEC) / 4;
+    endP = omp_get_wtime();
+    cpu_time_usedP = (endP - startP);
 
 
     printf("Paralelizada la iteracion sobre las llamadas a funciones\n");
     printf("Secuencial mas rapido: %lf\n\n", fastest);
-    printf("Paralelo: %lf\n\n", cpu_time_used);
-    printf("Speedup: %lf\n\n", (fastest/cpu_time_used));
+    printf("Paralelo: %lf\n\n", cpu_time_usedP);
+    printf("Speedup: %lf\n\n", (fastest/cpu_time_usedP));
 }
