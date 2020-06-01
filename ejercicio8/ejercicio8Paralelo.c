@@ -109,13 +109,9 @@ int main(){
         #pragma omp parallel private (tid)
         {
             tid = omp_get_thread_num();
-            printf("findMax desde el thread %d\n", tid);
             findMax(arr);
-            printf("findMin desde el thread %d\n", tid);
             findMin(arr);
-            printf("multiply desde el thread %d\n", tid);
             multiply(arr, 562);
-            printf("findDesviacion desde el thread %d\n", tid);
             findDesviacion(arr);
         }
         
@@ -128,10 +124,7 @@ int main(){
     }
 
     cpu_time_used = (((double) (end - start)) / CLOCKS_PER_SEC) / nthreads;
-
-    printf("\nHay que considerar que este es el unico que imprime carteles\n");
-    printf("Para una comparacion mas justa comente los prints\n\n");
-
+    
     printf("Paralelizada la iteracion sobre las llamadas a funciones\n");
     printf("Tiempo transcurrido: %lf\n\n", cpu_time_used);
 }
